@@ -1,0 +1,49 @@
+/* Additional styles for better ad integration */
+
+.richads-container {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.richads-banner {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ad-label {
+    font-size: 12px;
+    color: var(--tg-theme-hint-color, #999);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Responsive design for ads */
+@media (max-width: 480px) {
+    .richads-container {
+        margin: 10px -10px;
+    }
+}
+
+/* Loading animation */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--tg-theme-hint-color, #ccc);
+    border-top: 2px solid var(--tg-theme-button-color, #0088cc);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

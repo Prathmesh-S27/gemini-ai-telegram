@@ -7,6 +7,7 @@ import google.generativeai as genai
 from pathlib import Path
 from pyrogram import Client, filters, enums
 from pyrogram.types import Message
+from ad_config import ad_config, should_show_ad
 
 generation_config_cook = {
   "temperature": 0.35,
@@ -65,7 +66,15 @@ async def say(_, message: Message):
         response = chat.send_message(prompt)
         await i.delete()
 
-        await message.reply_text(f"**Question:**`{prompt}`\n**Answer:** {response.text}", parse_mode=enums.ParseMode.MARKDOWN)
+        response_text = f"**Question:**`{prompt}`\n**Answer:** {response.text}"
+        
+        # Add ad if needed
+        if should_show_ad():
+            ad_message = ad_config.get_ad_message()
+            if ad_message:
+                response_text += f"\n\n{ad_message}"
+
+        await message.reply_text(response_text, parse_mode=enums.ParseMode.MARKDOWN)
     except Exception as e:
         await i.delete()
         await message.reply_text(f"An error occurred: {str(e)}")
@@ -80,7 +89,15 @@ async def say(_, message: Message):
         response = chat.send_message(prompt)
         await i.delete()
 
-        await message.reply_text(f"**Question:**`{prompt}`\n**Answer:** {response.text}", parse_mode=enums.ParseMode.MARKDOWN)
+        response_text = f"**Question:**`{prompt}`\n**Answer:** {response.text}"
+        
+        # Add ad if needed
+        if should_show_ad():
+            ad_message = ad_config.get_ad_message()
+            if ad_message:
+                response_text += f"\n\n{ad_message}"
+
+        await message.reply_text(response_text, parse_mode=enums.ParseMode.MARKDOWN)
     except Exception as e:
         await i.delete()
         await message.reply_text(f"An error occurred: {str(e)}")

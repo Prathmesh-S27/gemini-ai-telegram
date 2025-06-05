@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI - Telegram Web App</title>
+    
+    <!-- Telegram Web App Script -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- RichAds Integration Code - Replace with your actual widget IDs -->
+    <script type="text/javascript">
+        // RichAds Configuration - Replace these IDs with your actual widget IDs
+        var richAdsConfig = {
+            pushStyle: 'YOUR_PUSH_WIDGET_ID',
+            interstitialBanner: 'YOUR_INTERSTITIAL_BANNER_ID',
+            interstitialVideo: 'YOUR_INTERSTITIAL_VIDEO_ID',
+            embeddedBanner: 'YOUR_EMBEDDED_BANNER_ID'
+        };
+        
+        // RichAds Main Script - Replace with your actual script
+        (function(r,i,c,h,a,d,s){
+            r['RichAdsObject']=a;r[a]=r[a]||function(){
+            (r[a].q=r[a].q||[]).push(arguments)},r[a].l=1*new Date();d=i.createElement(c),
+            s=i.getElementsByTagName(c)[0];d.async=1;d.src=h;s.parentNode.insertBefore(d,s)
+        })(window,document,'script','https://cdn.richads.com/richads.js','richads');
+        
+        // Initialize RichAds
+        richads('init', {
+            // Your RichAds configuration here
+        });
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--tg-theme-button-color, #0088cc);
+            margin-bottom: 10px;
+        }
+        
+        .chat-container {
+            background: var(--tg-theme-secondary-bg-color, #f5f5f5);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 400px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        .user-message {
+            background: var(--tg-theme-button-color, #0088cc);
+            color: white;
+            text-align: right;
+        }
+        
+        .ai-message {
+            background: white;
+            border-left: 3px solid var(--tg-theme-button-color, #0088cc);
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .message-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--tg-theme-button-color, #0088cc);
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .send-btn {
+            padding: 12px 20px;
+            background: var(--tg-theme-button-color, #0088cc);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .send-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .loading {
+            text-align: center;
+            color: var(--tg-theme-hint-color, #999);
+        }
+        
+        /* Ad containers */
+        .ad-banner {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .embedded-ad {
+            background: var(--tg-theme-secondary-bg-color, #f5f5f5);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🤖 Gemini AI</div>
+            <p>Powered by Google's Gemini AI</p>
+        </div>
+        
+        <!-- Embedded Banner Ad -->
+        <div class="ad-banner" id="embedded-banner">
+            <!-- RichAds Embedded Banner will be loaded here -->
+        </div>
+        
+        <div class="chat-container" id="chat-container">
+            <div class="message ai-message">
+                <strong>Gemini AI:</strong> Hello! I'm your AI assistant. How can I help you today?
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" class="message-input" id="message-input" placeholder="Type your message here..." />
+            <button class="send-btn" id="send-btn">Send</button>
+        </div>
+        
+        <!-- Interstitial Ad Trigger Area -->
+        <div class="embedded-ad" id="interstitial-trigger">
+            <p>💡 Enjoying the AI assistant? Support us by viewing our sponsors!</p>
+            <button onclick="showInterstitialAd()" style="margin-top: 10px; padding: 8px 16px; background: var(--tg-theme-button-color, #0088cc); color: white; border: none; border-radius: 4px;">
+                View Sponsor
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
